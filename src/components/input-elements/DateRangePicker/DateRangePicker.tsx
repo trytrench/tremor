@@ -156,7 +156,6 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>((
     <div
       ref={ref}
       className={tremorTwMerge(
-        // common
         "w-full min-w-[10rem] relative flex justify-between text-tremor-default",
         "max-w-sm",
         className,
@@ -196,6 +195,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>((
           </Popover.Button>
           {isClearEnabled && selectedStartDate ? (
             <button
+              type="button"
               className={tremorTwMerge(
                 "absolute outline-none inset-y-0 right-0 flex items-center transition duration-100",
                 spacing.twoXl.marginRight,
@@ -222,6 +222,7 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>((
           ) : null}
         </div>
         <Popover.Panel
+          focus={true}
           className={tremorTwMerge(
             // common
             "absolute z-10 divide-y overflow-y-auto min-w-min left-0 outline-none rounded-tremor-default p-3",
