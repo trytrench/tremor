@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# But not this folder
+!/dist/
+!/dist/**/*
+!/.gitignore
+!/License
+!/package.json
+!/README.md
+
