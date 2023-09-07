@@ -30,6 +30,7 @@ import { CurveType } from "../../../lib/inputTypes";
 
 export interface AreaChartProps extends BaseChartProps {
   stack?: boolean;
+  tooltipOrder: "byCategory" | "byValue";
   curveType?: CurveType;
   connectNulls?: boolean;
 }
@@ -40,6 +41,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>((props, ref) 
     categories = [],
     index,
     stack = false,
+    tooltipOrder = "byCategory",
     colors = themeColorRange,
     valueFormatter = defaultValueFormatter,
     startEndOnly = false,
@@ -134,11 +136,15 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>((props, ref) 
                 wrapperStyle={{ outline: "none" }}
                 isAnimationActive={false}
                 cursor={{ stroke: "#d1d5db", strokeWidth: 1 }} // @achi @severin
-                content={({ active, payload, label }) => (
+                itemSorter={(item) =>
+                  tooltipOrder === "byValue" && typeof item.value === "number" ? -item.value : -1
+                }
+                content={({ active, payload, label, itemSorter }) => (
                   <ChartTooltip
                     active={active}
                     payload={payload}
                     label={label}
+                    itemSorter={itemSorter}
                     valueFormatter={valueFormatter}
                     categoryColors={categoryColors}
                   />

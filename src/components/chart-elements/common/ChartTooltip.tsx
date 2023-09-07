@@ -78,6 +78,7 @@ export interface ChartTooltipProps {
   label: string;
   categoryColors: Map<string, Color>;
   valueFormatter: ValueFormatter;
+  itemSorter?: (item: any) => number | string;
 }
 
 const ChartTooltip = ({
@@ -86,7 +87,11 @@ const ChartTooltip = ({
   label,
   categoryColors,
   valueFormatter,
+  itemSorter = () => -1,
 }: ChartTooltipProps) => {
+  payload = payload?.sort((a: any, b: any) => {
+    return itemSorter(a) < itemSorter(b) ? -1 : 1;
+  });
   if (active && payload) {
     return (
       <ChartTooltipFrame>
