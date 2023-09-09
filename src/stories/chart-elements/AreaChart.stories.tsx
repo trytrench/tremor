@@ -5,6 +5,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { AreaChart, Card, Title } from "components";
 import { simpleBaseChartData as data, simpleBaseChartDataWithNulls } from "./helpers/testData";
 import { valueFormatter } from "./helpers/utils";
+import { ReferenceArea, ReferenceLine } from "recharts";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

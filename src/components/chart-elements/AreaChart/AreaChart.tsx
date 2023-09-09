@@ -62,6 +62,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>((props, ref) 
     allowDecimals = true,
     noDataText,
     className,
+    children,
     ...other
   } = props;
   const [legendHeight, setLegendHeight] = useState(60);
@@ -74,6 +75,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>((props, ref) 
       <ResponsiveContainer className="h-full w-full">
         {data?.length ? (
           <ReChartsAreaChart data={data}>
+            {children}
             {showGridLines ? (
               <CartesianGrid
                 className={tremorTwMerge(
