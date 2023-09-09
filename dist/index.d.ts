@@ -1,5 +1,6 @@
 /// <reference types="react" />
 import React$1, { ReactNode } from 'react';
+import { CategoricalChartFunc } from 'recharts/types/chart/generateCategoricalChart';
 import { enUS } from 'date-fns/locale';
 
 type ValueFormatter = {
@@ -54,6 +55,12 @@ interface AreaChartProps extends BaseChartProps {
     tooltipOrder: "byCategory" | "byValue";
     curveType?: CurveType;
     connectNulls?: boolean;
+    onClickChart?: CategoricalChartFunc;
+    onMouseLeaveChart?: CategoricalChartFunc;
+    onMouseEnterChart?: CategoricalChartFunc;
+    onMouseMoveChart?: CategoricalChartFunc;
+    onMouseDownChart?: CategoricalChartFunc;
+    onMouseUpChart?: CategoricalChartFunc;
 }
 declare const AreaChart: React$1.ForwardRefExoticComponent<AreaChartProps & React$1.RefAttributes<HTMLDivElement>>;
 
