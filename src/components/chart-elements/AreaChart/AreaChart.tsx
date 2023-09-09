@@ -27,12 +27,20 @@ import {
   tremorTwMerge,
 } from "lib";
 import { CurveType } from "../../../lib/inputTypes";
+import { CategoricalChartFunc } from "recharts/types/chart/generateCategoricalChart";
 
 export interface AreaChartProps extends BaseChartProps {
   stack?: boolean;
   tooltipOrder: "byCategory" | "byValue";
   curveType?: CurveType;
   connectNulls?: boolean;
+
+  onClickChart?: CategoricalChartFunc;
+  onMouseLeaveChart?: CategoricalChartFunc;
+  onMouseEnterChart?: CategoricalChartFunc;
+  onMouseMoveChart?: CategoricalChartFunc;
+  onMouseDownChart?: CategoricalChartFunc;
+  onMouseUpChart?: CategoricalChartFunc;
 }
 
 const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>((props, ref) => {
@@ -63,6 +71,13 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>((props, ref) 
     noDataText,
     className,
     children,
+
+    onClickChart,
+    onMouseLeaveChart,
+    onMouseEnterChart,
+    onMouseMoveChart,
+    onMouseDownChart,
+    onMouseUpChart,
     ...other
   } = props;
   const [legendHeight, setLegendHeight] = useState(60);
@@ -74,7 +89,15 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>((props, ref) 
     <div ref={ref} className={tremorTwMerge("w-full h-80", className)} {...other}>
       <ResponsiveContainer className="h-full w-full">
         {data?.length ? (
-          <ReChartsAreaChart data={data}>
+          <ReChartsAreaChart
+            data={data}
+            onClick={onClickChart}
+            onMouseLeave={onMouseLeaveChart}
+            onMouseEnter={onMouseEnterChart}
+            onMouseMove={onMouseMoveChart}
+            onMouseDown={onMouseDownChart}
+            onMouseUp={onMouseUpChart}
+          >
             {children}
             {showGridLines ? (
               <CartesianGrid
